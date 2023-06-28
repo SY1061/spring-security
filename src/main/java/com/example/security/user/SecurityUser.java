@@ -4,26 +4,25 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.security.core.GrantedAuthority;
 
 import java.util.Collection;
+import java.util.List;
 
-// DummyUser 보다 조금 더 향상 된 버전.
 @RequiredArgsConstructor
-public class SimpleUser implements UserDetails{
-    private final String username;
-    private final String password;
+public class SecurityUser implements UserDetails{
+    private final User user;
 
     @Override
     public String getUsername() {
-        return this.username;
+        return user.getUsername();
     }
 
     @Override
     public String getPassword() {
-        return this.password;
+        return user.getPassword();
     }
 
     @Override
     public Collection<? extends GrantedAuthority> getAuthorities() {
-        return null;
+        return List.of(user::getAuthority);
     }
 
     @Override
