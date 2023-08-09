@@ -18,5 +18,7 @@ public class InMemoryUserDetailsService implements UserDetailsService {
                 .filter(
                         u -> u.getUsername().equals(username)
                 )
+                .findFirst()
+                .orElseThrow(() -> new UsernameNotFoundException("User not found"));
     }
 }
